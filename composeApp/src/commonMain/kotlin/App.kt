@@ -38,9 +38,7 @@ fun App() {
                 startDestination = "screenA"
             ) {
                 composable("screenA") {
-                    val viewModel = koinViewModel<MainViewModel>{
-                        MainViewModel("Hello World")
-                    }
+                    val viewModel = koinViewModel<MainViewModel>()
                     val timer by viewModel.timer.collectAsState()
                     Box(
                         modifier = Modifier
