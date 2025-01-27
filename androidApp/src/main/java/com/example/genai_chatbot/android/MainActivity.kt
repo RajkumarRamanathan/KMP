@@ -11,7 +11,6 @@ import com.example.genai_chatbot.rememberFilePicker
 class MainActivity : ComponentActivity() {
     private lateinit var filePicker: AndroidFilePicker
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         filePicker = AndroidFilePicker(this)

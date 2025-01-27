@@ -8,11 +8,11 @@ import platform.UIKit.UIDocumentPickerViewController
 import platform.UIKit.UIViewController
 import platform.darwin.NSObject
 
-class IOSFilePicker(private val viewController: UIViewController) : FilePicker {
+class IOSFilePicker(private val viewController: UIViewController?) : FilePicker {
     override fun pickFile() {
-        val documentPicker = UIDocumentPickerViewController(documentTypes = listOf("com.adobe.pdf"), inMode = UIDocumentPickerMode.UIDocumentPickerModeImport)
+        val documentPicker = UIDocumentPickerViewController(documentTypes = listOf("pdf"), inMode = UIDocumentPickerMode.UIDocumentPickerModeImport)
         documentPicker.delegate = DocumentPickerDelegate()
-        viewController.presentViewController(documentPicker, animated = true, completion = null)
+        viewController?.presentViewController(documentPicker, animated = true, completion = null)
     }
 }
 
