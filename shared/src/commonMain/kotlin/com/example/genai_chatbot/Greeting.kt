@@ -21,8 +21,6 @@ interface FilePicker {
     fun pickFile()
 }
 
-
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun App(filePicker: FilePicker) {
@@ -36,9 +34,11 @@ fun App(filePicker: FilePicker) {
             )
         },
         content = { paddingValues ->
-            Column(modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
+            ) {
                 Button(
                     onClick = {
                         filePicker.pickFile()
@@ -60,33 +60,3 @@ fun App(filePicker: FilePicker) {
         }
     )
 }
-
-
-//
-//fun uploadFile(context: Context, fileUri: Uri) {
-//    val file = File(fileUri.path!!)
-//    val requestFile = file.asRequestBody("application/pdf".toMediaTypeOrNull())
-//    val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
-//
-//    val retrofit = Retrofit.Builder()
-//        .baseUrl("https://your.api.url/")
-//        .addConverterFactory(GsonConverterFactory.create())
-//        .build()
-//
-//    val service = retrofit.create(FileUploadService::class.java)
-//    val call = service.uploadFile(body)
-//
-//    call.enqueue(object : Callback<Void> {
-//        override fun onResponse(call: Call<Void>, response: Response<Void>) {
-//            if (response.isSuccessful) {
-//                // Handle successful upload
-//            } else {
-//                // Handle upload failure
-//            }
-//        }
-//
-//        override fun onFailure(call: Call<Void>, t: Throwable) {
-//            // Handle upload error
-//        }
-//    })
-//}

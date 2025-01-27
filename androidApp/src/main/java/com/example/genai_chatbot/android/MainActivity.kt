@@ -6,7 +6,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.example.genai_chatbot.AndroidFilePicker
 import com.example.genai_chatbot.App
-import com.example.genai_chatbot.rememberFilePicker
 
 class MainActivity : ComponentActivity() {
     private lateinit var filePicker: AndroidFilePicker
