@@ -12,14 +12,18 @@ class AndroidFilePicker(activity: ComponentActivity) : FilePicker {
         activity.registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
             uri?.let {
                 // Handle the picked file URI
+                fileName = it.toString()
+                _delegate?.updateUI(fileName)
             }
         }
 
     override fun pickFile() {
         pickFileLauncher.launch("application/pdf")
     }
-}
 
+    override var _delegate: UIUpdateCallback? = null
+}
+var fileName: String = ""
 @Composable
 fun rememberFilePicker(): FilePicker {
     val context = LocalContext.current

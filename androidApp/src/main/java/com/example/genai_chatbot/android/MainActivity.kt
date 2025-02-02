@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.example.genai_chatbot.AndroidFilePicker
-import com.example.genai_chatbot.App
+import com.example.genai_chatbot.PickAFileUI
 
 class MainActivity : ComponentActivity() {
     private lateinit var filePicker: AndroidFilePicker
@@ -14,7 +14,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         filePicker = AndroidFilePicker(this)
         setContent {
-            App(filePicker)
+            PickAFileUI(filePicker)
         }
     }
 }

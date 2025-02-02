@@ -1,8 +1,8 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    alias(libs.plugins.composeMultiplatform)
-    alias(libs.plugins.composeCompilerPlugin)
+    alias(libs.plugins.jetbrainsCompose)
+    alias(libs.plugins.compose.compiler)
     id("com.android.library")
     kotlin("multiplatform")
 }
@@ -35,12 +35,16 @@ kotlin {
             implementation(compose.foundation)
             implementation(compose.material3)
             implementation(compose.ui)
+            implementation(libs.bundles.viewModelKoin)
         }
         val androidMain by getting {
             dependencies {
                 implementation(libs.androidx.core.ktx)
                 implementation(libs.androidx.appcompat)
                 implementation(libs.material)
+                implementation(libs.androidx.collection.ktx)
+                implementation(libs.koin.android)
+                implementation(libs.koin.androidx.compose)
             }
         }
         commonTest.dependencies {
@@ -62,5 +66,5 @@ android {
 }
 dependencies {
     implementation(libs.androidx.activity.ktx)
-    implementation(libs.androidx.activity.ktx)
+
 }

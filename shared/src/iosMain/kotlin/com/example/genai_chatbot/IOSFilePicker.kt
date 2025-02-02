@@ -7,22 +7,27 @@ import platform.UIKit.UIDocumentPickerViewController
 import platform.UIKit.UIViewController
 import platform.darwin.NSObject
 
-class IOSFilePicker(private val viewController: UIViewController?) : FilePicker {
+var fileName: String = ""
+
+class IOSFilePicker(
+    private val viewController: UIViewController?
+) : FilePicker {
     override fun pickFile() {
         val documentPicker = UIDocumentPickerViewController(
-            documentTypes = listOf("pdf"),
+            documentTypes = listOf("com.adobe.pdf"),
             inMode = UIDocumentPickerMode.UIDocumentPickerModeImport
         )
-        documentPicker.delegate = DocumentPickerDelegate()
+        documentPicker.delegate = object : NSObject(), UIDocumentPickerDelegateProtocol {
+            override fun documentPicker(
+                controller: UIDocumentPickerViewController,
+                didPickDocumentAtURL: NSURL
+            ) {
+                fileName = didPickDocumentAtURL.absoluteString ?: ""
+                _delegate?.updateUI("File selected: $fileName")
+            }
+        }
+        //= DocumentPickerDelegate(_delegate)
         viewController?.presentViewController(documentPicker, animated = true, completion = null)
     }
-}
-
-class DocumentPickerDelegate : NSObject(), UIDocumentPickerDelegateProtocol {
-    override fun documentPicker(
-        controller: UIDocumentPickerViewController,
-        didPickDocumentAtURL: NSURL
-    ) {
-        // Handle the picked file URL
-    }
+    override var _delegate: UIUpdateCallback? = null
 }
