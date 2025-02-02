@@ -23,11 +23,11 @@ class IOSFilePicker(
                 didPickDocumentAtURL: NSURL
             ) {
                 fileName = didPickDocumentAtURL.absoluteString ?: ""
-                _delegate?.updateUI("File selected: $fileName")
+                fileUri?.updateUI("File selected: $fileName")
             }
         }
         //= DocumentPickerDelegate(_delegate)
         viewController?.presentViewController(documentPicker, animated = true, completion = null)
     }
-    override var _delegate: UIUpdateCallback? = null
+    override var fileUri: UIUpdateCallback? = null
 }

@@ -23,15 +23,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import org.koin.compose.KoinContext
 import org.koin.compose.currentKoinScope
 
 interface FilePicker {
     fun pickFile()
-    var _delegate: UIUpdateCallback?
+    var fileUri: UIUpdateCallback?
 }
 
 interface UIUpdateCallback {
@@ -42,10 +39,6 @@ interface UIUpdateCallback {
 @Composable
 fun  PickAFileUI(filePicker: FilePicker) {
     KoinContext {
-        val navController = rememberNavController()
-
-
-
         var filePath by remember { mutableStateOf("") }
 
         Scaffold(
@@ -62,7 +55,7 @@ fun  PickAFileUI(filePicker: FilePicker) {
                 ) {
                     Button(
                         onClick = {
-                            filePicker._delegate = object : UIUpdateCallback {
+                            filePicker.fileUri = object : UIUpdateCallback {
                                 override fun updateUI(message: String) {
                                     filePath = message
                                 }

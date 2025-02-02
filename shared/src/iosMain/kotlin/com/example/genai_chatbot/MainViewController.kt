@@ -1,3 +1,5 @@
+@file:Suppress("FunctionName", "unused")
+
 package com.example.genai_chatbot
 
 import KoinInitializer

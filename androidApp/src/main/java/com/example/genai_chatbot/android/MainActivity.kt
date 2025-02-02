@@ -1,4 +1,3 @@
-// androidApp/src/main/java/com/example/genai_chatbot/android/MainActivity.kt
 package com.example.genai_chatbot.android
 
 import android.os.Bundle

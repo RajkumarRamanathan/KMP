@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.example.genai_chatbot
 
 import platform.UIKit.UIDevice

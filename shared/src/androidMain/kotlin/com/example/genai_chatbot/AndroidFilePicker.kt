@@ -3,17 +3,13 @@ package com.example.genai_chatbot
 import android.net.Uri
 import androidx.activity.ComponentActivity
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
-import androidx.compose.ui.platform.LocalContext
 
 class AndroidFilePicker(activity: ComponentActivity) : FilePicker {
     private val pickFileLauncher =
         activity.registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
             uri?.let {
                 // Handle the picked file URI
-                fileName = it.toString()
-                _delegate?.updateUI(fileName)
+                fileUri?.updateUI(it.toString())
             }
         }
 
@@ -21,11 +17,5 @@ class AndroidFilePicker(activity: ComponentActivity) : FilePicker {
         pickFileLauncher.launch("application/pdf")
     }
 
-    override var _delegate: UIUpdateCallback? = null
-}
-var fileName: String = ""
-@Composable
-fun rememberFilePicker(): FilePicker {
-    val context = LocalContext.current
-    return remember { AndroidFilePicker(context as ComponentActivity) }
+    override var fileUri: UIUpdateCallback? = null
 }
